@@ -7,7 +7,14 @@ Today we will be building the back and front end for a [simple recipes app](http
 ## Homework
 
 - Add an author to the recipe schema, allow the user to enter it and display it in the ui.
-- Allow the user to enter ingredients and preparations steps.
+- Prevent the double display when editing a recipe (toast)
+- When a new recipe is created, it should appear on top
+
+## Homework II
+
+- create a database cluster on mongodb.com and use it with your server (with your own connection string)
+- deploy your app to Heroku refer to the following instructions: `https://www.mongodb.com/developer/how-to/use-atlas-on-heroku/#std-label-configure-heroku-ip-address-in-atlas`
+- add the ability to edit the year to the edit recipe page
 
 ## Resources
 
@@ -1272,8 +1279,10 @@ Rather than installing a database on our local computer we could use [MongoDB's]
 2. Create a project called NYU
 3. Create a cluster naming it `recipes`
 4. Create a database user (this is different from the login username and password) with Read/Write access
-5. Whitelist access from anywhere
+5. Whitelist access from anywhere (n the 'Network Access' section of the MongoDB UI)
 6. Select a connection method (select Connect your Application) and copy the connection string
+
+[Here](https://www.mongodb.com/developer/how-to/use-atlas-on-heroku/#std-label-configure-heroku-ip-address-in-atlas) is a full set of instructions for integrating MongoDB Atlas and Heroku.
 
 ## Deployment
 
@@ -1291,7 +1300,7 @@ DATABASE=mongodb+srv://daniel:dd2345@recipes-3k4ea.mongodb.net/test?retryWrites=
 PORT=3000
 ```
 
-Be sure to replace the DATABASE with your own url.
+Be sure to replace the DATABASE with your own url!!!
 
 Install a helper [dotenv](https://www.npmjs.com/package/dotenv):
 
@@ -1338,6 +1347,10 @@ Create a git repo and deploy to Github.
 <!-- On Heroku set the production environment variables. -->
 
 ## Instructor Notes
+
+In case you get an error message stating that the port is already in use:
+
+`https://stackoverflow.com/questions/4075287/node-express-eaddrinuse-address-already-in-use-kill-server`
 
 Using async/await:
 
