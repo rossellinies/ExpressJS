@@ -2,16 +2,18 @@ function getRecipes() {
   document.querySelector(".recipes").innerHTML = ``;
   fetch(`api/recipes`)
     .then((response) => response.json())
+    .then ( data => data.sort( (a,b) => +b.year - +a.year ))
     .then((recipes) => renderRecipes(recipes));
 }
 
 function addRecipe(event) {
   event.preventDefault();
-  const { title, author, image, description } = event.target;
+  const { title, author, image, year, description } = event.target;
   const recipe = {
     title: title.value,
     author: author.value,
     image: image.value,
+    year: year.value,
     description: description.value,
   };
   fetch("api/recipes", {
@@ -28,13 +30,14 @@ function addRecipe(event) {
 function renderRecipes(recipes) {
   recipes.forEach((recipe) => {
     // destructure
-    const { _id, title, author, image, description } = recipe;
+    const { _id, title, author, image, year, description } = recipe;
     recipeEl = document.createElement("div");
     recipeEl.innerHTML = `
     <img src="img/${image}" />
     <h3><a href="detail.html?recipe=${_id}">${title}</a></h3>
     <h4>${author === undefined ? "Author" : author}</h4>
     <p>${description}</p>
+    <p>${year}</p>
     <button class="delete" data-id=${_id} href="#">Delete</button>
   `;
     return document.querySelector(".recipes").append(recipeEl);
